@@ -1,0 +1,132 @@
+h1{
+	margin: 25px;
+}
+h2{
+	margin: 25px;
+}
+body{
+	text-align: center;
+	font-family: verdana, arial;
+	background-color: #EEE;
+}
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+li{
+	display: inline-block;
+}
+li{
+	background-color: #234;
+}
+a{
+	text-decoration: none;
+}
+.nav-box{
+	  text-decoration: none;
+	  background-color: #EEEEEE;
+	  color: #333333;
+	  padding: 2px 6px 2px 6px;
+	  border-top: 1px solid #CCCCCC;
+	  border-right: 1px solid #333333;
+	  border-bottom: 1px solid #333333;
+	  border-left: 1px solid #CCCCCC;
+}
+.nav-box:hover{
+	background-color: #CCC;
+}
+.main-box{
+	margin: 25px auto 25px auto;
+	padding: 20px;
+	height: auto;
+	width: 80%;
+	background-color: #FFF;
+	max-width: 1000px;
+	
+	box-shadow: 3px 3px 5px 0px;
+}
+#html-css-js-logos{
+	width: 25%;
+	max-width: 500px;
+	margin: 10px;
+}
+.links{
+	display: block;
+}
+
+.building-box{
+	border: solid;
+	border-color: #363;
+	border-radius: 5px;
+	display: inline-block;
+	width: 400px;
+	background-color: #595;
+}
+.building-container{
+	display: inline-grid;
+	grid-template-columns: auto auto;
+}
+.building-image {
+	display: inline-block;
+	position: relative;
+	left: -9px;
+	top: 10px;
+	margin: 10px;
+	height: 100px;
+	image-rendering: pixelated;
+}
+.building-details {
+	margin: auto;
+	border: solid;
+	border-color: #252;
+	border-radius: 5px;
+	display: inline-block;
+	height: 75%;
+	width: 60%;
+	background-color: #373;
+	font-size: 18px;
+	text-align: left;
+
+	position: relative;
+	left: 0px;
+	bottom: -4px;
+}
+.buy-button {
+	display: inline-block;
+	background-color: #EE3;
+	font-weight: bold;
+	position: relative;
+	bottom: 20px;
+	right: 135px;
+	font-size: 75%;
+	padding: 5px;
+	border-radius: 5px;
+}
+	.buy-button:hover {
+		background-color: #AA2;
+	}
+#coin{
+	height: 200px;
+	image-rendering: pixelated;
+}
+
+.progress-bar-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+	width: 35%;
+	background-color: #555;
+	margin: auto;
+}
+.progress-bar {
+	height: 100%;
+	width: 100%;
+	background-color: #2B2;
+}
+.progress-bar-back {
+	height: 80%;
+	width: 97%;
+	background-color: #FFF;
+}
