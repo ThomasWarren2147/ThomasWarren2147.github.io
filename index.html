@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My JS Projects</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	
+	<body>
+		<h1>My JS Projects</h1>
+		<nav class="nav-bar">
+			<ul>
+				<li><a class="nav-box" href="index.html">Home</a></li>
+				<li><a class="nav-box" href="jsprojects.html">Projects</a></li>
+			</ul>
+		</nav>
+		
+		<div class="main-box">
+			<h2>Purpose of This Website</h2>
+			<img id="html-css-js-logos" src="html-css-js.jpg" alt="html-css-js logos">
+			<p id="description">The purpose of this website is to have a place to store the
+			Javascript projects that I have and will be building as part
+			of my interest in web development and programming as a whole.</p>
+		</div>
+	</body>
+</html>
+
+<script>
+	var image = document.getElementById("html-css-js-logos");
+	//var hovering = false;
+	
+	function buttonHover(widthVal){
+		var i = 10;
+		hovering = true;
+		
+		setInterval(function() {
+			if(hovering == true){
+				i += 0.1;
+				image.style.width = i + "%";
+			}
+			else{
+				clearInterval(setInterval);
+			}
+		}, 10);
+	}
+	
+	function buttonUnHover(){
+		hovering = false;
+	}
+
+</script>
