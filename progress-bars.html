@@ -6,62 +6,98 @@
         <link rel="stylesheet" href="style.css">
     </head>
 
-    <body>
-        <h1>Random Progress Bars</h1>
-
-        <h2>Time until next hour</h2>
-        <div class="progress-bar-box">
-            <div class="progress-bar-back">
-                <div id="progress-bar" class="progress-bar">
-
-                </div>
-            </div>
-        </div>
-
-        <p id="progress-percentage">100.0%</p>
-        <p id="progress-time-left">00:30</p>
+    <body id="body">
+        <h1>Random Progress Bars</h1>        
 
     </body>
 
 </html>
 
 <script>
-    var progressBar = document.getElementById("progress-bar");
-    var progressPercentage = document.getElementById("progress-percentage");
-    var progressTimeLeft = document.getElementById("progress-time-left");
-    const time = [11]
-    const timeLeft = [11];
-    const minutesLeft = [];
-    const secondsLeft = [];
-    var width = 100; 
-    
-    const updateTimer = setInterval(function(){
-            minutesLeft[0] = Math.floor(timeLeft[0] / 60);
-            secondsLeft[0] = Math.round(timeLeft[0] % 60);
+    const bars = ["minute", "hour", "day", "week", "month", "year", "decade", "century", "millenium"]
 
-            timeLeft[0] -= 1;
-        
-            if (minutesLeft[0] < 10) {
-                minutesLeft[0] = "0" + minutesLeft[0].toString();
-            }  
-            if (secondsLeft[0] < 10) {
-                secondsLeft[0] = "0" + secondsLeft[0].toString();
+    for (var i = 0; i < bars.length; i++) {
+        document.getElementById("body").innerHTML += `<h2>Time until 1 ${bars[i]} after loading this page</h2>
+            <div class="progress-bar-box">
+                <div class="progress-bar-back">
+                    <div id="progress-bar-${bars[i]}" class="progress-bar">
+
+                    </div>
+                </div>
+            </div>
+
+            <p id="progress-percentage-${bars[i]}">100.0%</p>
+            <p id="progress-time-left-${bars[i]}">60:00</p>`;
+    }
+
+    updateBars("minute", 60);
+    updateBars("hour", 3600);
+    updateBars("day", 86400);
+    updateBars("week", 86400*7);
+    updateBars("month", 86400*30);
+    updateBars("year", 31556952);
+    updateBars("decade", 31556952*10);
+    updateBars("century", 31556952*100);
+    updateBars("millenium", 31556952*1000);
+
+    function updateBars(bar, time) {
+        var progressBar = document.getElementById("progress-bar-" + bar);
+        var progressPercentage = document.getElementById("progress-percentage-" + bar);
+        var progressTimeLeft = document.getElementById("progress-time-left-" + bar);
+        var timeLeft = time;
+        var hoursLeft;
+        var minutesLeft;
+        var secondsLeft;
+        var width = 100;
+
+        var start = Date.now();
+        var finish = start + time * 1000;
+
+        function updateTimer() {
+            if (timeLeft >= 0) {
+                hoursLeft = Math.floor((timeLeft / 3600));
+                minutesLeft = Math.floor((timeLeft / 60) % 60);
+                secondsLeft = Math.round(timeLeft % 60);
+
+                timeLeft = Math.floor((finish - Date.now()) / 1000);
+
+                if (hoursLeft < 10) {
+                    hoursLeft = "0" + hoursLeft.toString();
+                }
+                if (minutesLeft < 10) {
+                    minutesLeft = "0" + minutesLeft.toString();
+                }
+                if (secondsLeft < 10) {
+                    secondsLeft = "0" + secondsLeft.toString();
+                }
+
+                progressTimeLeft.innerHTML = hoursLeft + ":" + minutesLeft + ":" + secondsLeft;
+            }
+            else {
+                timeLeft = 0;
+            }
+        }
+
+        updateTimer()
+        const updateTime = setInterval(updateTimer, 10)
+
+        const hourInterval = setInterval(function () {
+
+            if (width > 0) {
+                width = (finish - Date.now()) / (finish - start) * 100;
+            }
+            else {
+                width = 0;
             }
 
-            progressTimeLeft.innerHTML = minutesLeft[0] + ":" + secondsLeft[0];
-        }
-        , 1000)
-
-    const hourInterval = setInterval(function () {
-        if (width <= 0) {
-            clearInterval(hourInterval);
-        }
-
-        width -= 0.1;
-        
-                    progressBar.style.width = width + "%";
+            progressBar.style.width = width + "%";
             progressPercentage.innerHTML = width.toFixed(1) + "%";
+
+            if (width <= 0) {
+                clearInterval(hourInterval);
+            }
+        }
+            , time);
     }
-    , time[0]);
 
 </script>
