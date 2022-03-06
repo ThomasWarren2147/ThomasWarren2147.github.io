@@ -29,8 +29,8 @@
     var progressBar = document.getElementById("progress-bar");
     var progressPercentage = document.getElementById("progress-percentage");
     var progressTimeLeft = document.getElementById("progress-time-left");
-    const time = [3600]
-    const timeLeft = [3600];
+    const time = [11]
+    const timeLeft = [11];
     const minutesLeft = [];
     const secondsLeft = [];
     var width = 100; 
@@ -39,6 +39,8 @@
             minutesLeft[0] = Math.floor(timeLeft[0] / 60);
             secondsLeft[0] = Math.round(timeLeft[0] % 60);
 
+            timeLeft[0] -= 1;
+        
             if (minutesLeft[0] < 10) {
                 minutesLeft[0] = "0" + minutesLeft[0].toString();
             }  
@@ -56,7 +58,6 @@
         }
 
         width -= 0.1;
-        timeLeft[0] -= time[0]/1000
         
                     progressBar.style.width = width + "%";
             progressPercentage.innerHTML = width.toFixed(1) + "%";
