@@ -34,6 +34,21 @@
     const minutesLeft = [];
     const secondsLeft = [];
     var width = 100; 
+    
+    const updateTimer = setInterval(function(){
+            minutesLeft[0] = Math.floor(timeLeft[0] / 60);
+            secondsLeft[0] = Math.round(timeLeft[0] % 60);
+
+            if (minutesLeft[0] < 10) {
+                minutesLeft[0] = "0" + minutesLeft[0].toString();
+            }  
+            if (secondsLeft[0] < 10) {
+                secondsLeft[0] = "0" + secondsLeft[0].toString();
+            }
+
+            progressTimeLeft.innerHTML = minutesLeft[0] + ":" + secondsLeft[0];
+        }
+        , 1000)
 
     const hourInterval = setInterval(function () {
         if (width <= 0) {
@@ -41,22 +56,10 @@
         }
 
         width -= 0.1;
-        timeLeft[0] -= time[0]/1000;
-
-        progressBar.style.width = width + "%";
-        progressPercentage.innerHTML = width.toFixed(1) + "%";
-
-        minutesLeft[0] = Math.floor(timeLeft[0] / 60);
-        secondsLeft[0] = Math.round(timeLeft[0] % 60);
-
-        if (minutesLeft[0] < 10) {
-            minutesLeft[0] = "0" + minutesLeft[0].toString();
-        }  
-        if (secondsLeft[0] < 10) {
-            secondsLeft[0] = "0" + secondsLeft[0].toString();
-        }
-
-        progressTimeLeft.innerHTML = minutesLeft[0] + ":" + secondsLeft[0];
+        timeLeft[0] -= time[0]/1000
+        
+                    progressBar.style.width = width + "%";
+            progressPercentage.innerHTML = width.toFixed(1) + "%";
     }
     , time[0]);
 
