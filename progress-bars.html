@@ -6,8 +6,21 @@
         <link rel="stylesheet" href="style.css">
     </head>
 
-    <body id="body">
-        <h1>Random Progress Bars</h1>        
+    <body>
+        <h1>Random Progress Bars</h1>   
+
+        <nav class="nav-bar">
+			<ul>
+				<li><a class="nav-box" onclick="changePage('default')">Default</a></li>
+				<li><a class="nav-box" onclick="changePage('custom')">Custom</a></li>
+			</ul>
+		</nav>
+
+        <div>
+            
+        </div>
+
+        <div id="progress-bars"></div>
 
     </body>
 
@@ -15,32 +28,73 @@
 
 <script>
     const bars = ["minute", "hour", "day", "week", "month", "year", "decade", "century", "millenium"]
+    var currentPage = "default";
+    var progressBars = document.getElementById("progress-bars");
 
-    for (var i = 0; i < bars.length; i++) {
-        document.getElementById("body").innerHTML += `<h2>Time until 1 ${bars[i]} after loading this page</h2>
-            <div class="progress-bar-box">
-                <div class="progress-bar-back">
-                    <div id="progress-bar-${bars[i]}" class="progress-bar">
+    function changePage(page){
+        progressBars.innerHTML = "";
 
-                    </div>
-                </div>
-            </div>
+        switch(page){
+            case "default":
+                for (var i = 0; i < bars.length; i++) {
+                    progressBars.innerHTML += `<h2>Time until 1 ${bars[i]} after loading this page</h2>
+                        <div class="progress-bar-box">
+                            <div class="progress-bar-back">
+                                <div id="progress-bar-${bars[i]}" class="progress-bar">
 
-            <p id="progress-percentage-${bars[i]}">100.0%</p>
-            <p id="progress-time-left-${bars[i]}">60:00</p>`;
+                                </div>
+                            </div>
+                        </div>
+
+                        <p id="progress-percentage-${bars[i]}">100.0%</p>
+                        <p id="progress-time-left-${bars[i]}">60:00</p>`;
+                }
+                break;
+            case "custom":
+                progressBars.innerHTML += `<h2>Create a custom bar!</h2>
+                <form><b>
+                    <label type="text" style="display: block; margin: auto auto auto auto;" id="custom-bar-name">Name of bar:</label>
+                    <input>
+                    <label type="text" style="display: block; margin: 10px auto auto auto;" id="custom-bar-length">Length: </label>
+                    <input>
+                    <input class="nav-box" type="button" style="display: block; margin: 12px auto auto auto;" value="Add" onclick="createBar('custom-bar-name', 'custom-bar-length')">
+                </form></b>`
+                break;
+        }
     }
 
-    updateBars("minute", 60);
-    updateBars("hour", 3600);
-    updateBars("day", 86400);
-    updateBars("week", 86400*7);
-    updateBars("month", 86400*30);
-    updateBars("year", 31556952);
-    updateBars("decade", 31556952*10);
-    updateBars("century", 31556952*100);
-    updateBars("millenium", 31556952*1000);
+    changePage("default");
 
-    function updateBars(bar, time) {
+    updateBar("minute", 60);
+    updateBar("hour", 3600);
+    updateBar("day", 86400);
+    updateBar("week", 86400*7);
+    updateBar("month", 86400*30);
+    updateBar("year", 31556952);
+    updateBar("decade", 31556952*10);
+    updateBar("century", 31556952*100);
+    updateBar("millenium", 31556952*1000);
+    
+    function createBar(name, maxTime){
+        var finalName = document.getElementById(name).value;
+        var finalTime = document.getElementById(maxTime).value*1000;
+
+        progressBars.innerHTML += `<h2>${finalName}</h2>
+                        <div class="progress-bar-box">
+                            <div class="progress-bar-back">
+                                <div id="progress-bar-${finalName}" class="progress-bar">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <p id="progress-percentage-${finalName}">100.0%</p>
+                        <p id="progress-time-left-${finalName}">60:00</p>`;
+
+        updateBar(finalName, finalTime);
+    }
+
+    function updateBar(bar, time) {
         var progressBar = document.getElementById("progress-bar-" + bar);
         var progressPercentage = document.getElementById("progress-percentage-" + bar);
         var progressTimeLeft = document.getElementById("progress-time-left-" + bar);
