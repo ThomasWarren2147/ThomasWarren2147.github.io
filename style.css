@@ -55,62 +55,6 @@ a{
 	display: block;
 }
 
-.building-box{
-	border: solid;
-	border-color: #363;
-	border-radius: 5px;
-	display: inline-block;
-	width: 400px;
-	background-color: #595;
-}
-.building-container{
-	display: inline-grid;
-	grid-template-columns: auto auto;
-}
-.building-image {
-	display: inline-block;
-	position: relative;
-	left: -9px;
-	top: 10px;
-	margin: 10px;
-	height: 100px;
-	image-rendering: pixelated;
-}
-.building-details {
-	margin: auto;
-	border: solid;
-	border-color: #252;
-	border-radius: 5px;
-	display: inline-block;
-	height: 75%;
-	width: 60%;
-	background-color: #373;
-	font-size: 18px;
-	text-align: left;
-
-	position: relative;
-	left: 0px;
-	bottom: -4px;
-}
-.buy-button {
-	display: inline-block;
-	background-color: #EE3;
-	font-weight: bold;
-	position: relative;
-	bottom: 20px;
-	right: 135px;
-	font-size: 75%;
-	padding: 5px;
-	border-radius: 5px;
-}
-	.buy-button:hover {
-		background-color: #AA2;
-	}
-#coin{
-	height: 200px;
-	image-rendering: pixelated;
-}
-
 .progress-bar-box {
 	display: flex;
 	justify-content: center;
