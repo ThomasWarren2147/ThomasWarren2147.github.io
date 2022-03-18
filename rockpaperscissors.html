@@ -2,14 +2,34 @@
 
 <html>
 	<head>
-	
+		<title>Rock Paper Scissors</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	
 	<body>
-	
+		<h1>Rock Paper Scissors</h1>
+
+		<p id="object">&#x1F4C4</p>
+
+		<a class="rps-buttons">Rock</a>
+		<a class="rps-buttons">Paper</a>
+		<a class="rps-buttons">Scissors</a>
+
 	</body>
 </html>
 
 <script>
+	const objects = ["&#x1F311", "&#x1F4C4", "&#x2702"];
+	var objectIndex = 0;
 
+	setInterval(function(){
+		document.getElementById("object").innerHTML = objects[objectIndex];
+
+		if(objectIndex >= 2){
+			objectIndex = 0;
+		}
+		else{
+			objectIndex += 1;
+		}
+	}, 500);
 </script>

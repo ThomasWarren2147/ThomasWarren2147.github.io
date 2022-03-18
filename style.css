@@ -45,6 +45,8 @@ a{
 	width: 80%;
 	background-color: #FFF;
 	max-width: 1000px;
+	border-radius: 15px;
+	border: solid;
 	
 	box-shadow: 3px 3px 5px 0px;
 }
@@ -75,4 +77,23 @@ a{
 	height: 80%;
 	width: 97%;
 	background-color: #FFF;
+}
+
+#object{
+	font-size: 100px;
+	margin: 100px;;
+
+}
+.rps-buttons{
+	text-decoration: none;
+	  background-color: #DDD;
+	  color: #333;
+	  padding: 15px 20px 15px 20px;
+	  border-radius: 20px;
+	  border-top: 2px solid #333;
+	  border-right: 2px solid #333;
+	  border-bottom: 2px solid #333;
+	  border-left: 2px solid #333;
+	  cursor: pointer;
+	  font-size: 25px;
 }
