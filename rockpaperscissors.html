@@ -62,32 +62,32 @@
 		if(object == weakness[random]){
 			wins++;
 			document.getElementById("wins").innerHTML = "Wins: " + wins.toString();
-			result = "win";
+			result = "Win";
 		}
 		else if(random == weakness[object]){
 			losses++;
 			document.getElementById("losses").innerHTML = "Losses: " + losses.toString();
-			result = "draw";
+			result = "Draw";
 		}
 		else{
 			draws++;
 			document.getElementById("draws").innerHTML = "Draws: " + draws.toString();
-			result = "loss";
+			result = "Loss";
 		}
 
 		switch(result){
-			case "win":
+			case "Win":
 				colour = "green";
 				break;
-			case "draw":
+			case "Draw":
 				colour = "black";
 				break;
-			case "loss":
+			case "Loss":
 				colour = "red";
 				break;
 		}
 
 		document.getElementById("object").innerHTML = `${emojis[object]} ${emojis[random]}`;
-		document.getElementById("action").innerHTML = `<div style="color: ${colour};">${result}</div><br>You rolled ${emojis[object]}!<br>Computer rolled ${emojis[random]}!`;
+		document.getElementById("action").innerHTML = `<div style="color: ${colour};">${result}!</div><br>You rolled ${emojis[object]}!<br>Computer rolled ${emojis[random]}!`;
 	}
 </script>
