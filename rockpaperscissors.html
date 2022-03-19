@@ -68,12 +68,12 @@
 		else if(random == weakness[object]){
 			losses++;
 			document.getElementById("losses").innerHTML = "Losses: " + losses.toString();
-			result = "Draw";
+			result = "Loss";
 		}
 		else{
 			draws++;
 			document.getElementById("draws").innerHTML = "Draws: " + draws.toString();
-			result = "Loss";
+			result = "Draw";
 		}
 
 		switch(result){
