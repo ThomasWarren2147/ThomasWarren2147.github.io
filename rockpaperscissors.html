@@ -11,19 +11,39 @@
 
 		<p id="object">&#x1F4C4</p>
 
-		<a class="rps-buttons">Rock</a>
-		<a class="rps-buttons">Paper</a>
-		<a class="rps-buttons">Scissors</a>
+		<a class="rps-buttons" onclick="roll(0)">Rock</a>
+		<a class="rps-buttons" onclick="roll(1)">Paper</a>
+		<a class="rps-buttons" onclick="roll(2)">Scissors</a>
+
+		<p><br></p>
+		<b><p id="wins">Wins: 0</p>
+		<p id="draws">Draws: 0</p>
+		<p id="losses">Losses: 0</p></b>
+		<p><br></p>
+
+		<p id="action"><br></p>
 
 	</body>
 </html>
 
 <script>
-	const objects = ["&#x1F311", "&#x1F4C4", "&#x2702"];
+	const emojis = ["&#x1F311", "&#x1F4C4", "&#x2702"];
+	const objects = ["rock", "paper", "scissors"];
+	const weakness = [1, 2, 0];
+
 	var objectIndex = 0;
 
-	setInterval(function(){
-		document.getElementById("object").innerHTML = objects[objectIndex];
+	var wins = 0;
+	var losses = 0; 
+	var draws = 0;
+	var result = "";
+
+	var rolled = false;
+
+	const changeEmojiInterval = setInterval(changeEmoji, 500);
+
+	function changeEmoji(){
+		document.getElementById("object").innerHTML = emojis[objectIndex];
 
 		if(objectIndex >= 2){
 			objectIndex = 0;
@@ -31,5 +51,43 @@
 		else{
 			objectIndex += 1;
 		}
-	}, 500);
+	}
+
+	function roll(object){
+		var random = Math.floor(Math.random() * 3);
+		var colour;
+
+		clearInterval(changeEmojiInterval);
+
+		if(object == weakness[random]){
+			wins++;
+			document.getElementById("wins").innerHTML = "Wins: " + wins.toString();
+			result = "win";
+		}
+		else if(random == weakness[object]){
+			losses++;
+			document.getElementById("losses").innerHTML = "Losses: " + losses.toString();
+			result = "draw";
+		}
+		else{
+			draws++;
+			document.getElementById("draws").innerHTML = "Draws: " + draws.toString();
+			result = "loss";
+		}
+
+		switch(result){
+			case "win":
+				colour = "green";
+				break;
+			case "draw":
+				colour = "black";
+				break;
+			case "loss":
+				colour = "red";
+				break;
+		}
+
+		document.getElementById("object").innerHTML = `${emojis[object]} ${emojis[random]}`;
+		document.getElementById("action").innerHTML = `<div style="color: ${colour};">${result}</div><br>You rolled ${emojis[object]}!<br>Computer rolled ${emojis[random]}!`;
+	}
 </script>
