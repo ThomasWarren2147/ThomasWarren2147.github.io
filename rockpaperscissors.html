@@ -10,7 +10,7 @@
 	<body id="rps">
 		<h1>Rock Paper Scissors</h1>
 
-		<p id="object">&#x1F4C4</p>
+		<p id="object">&#x1F4C4;</p>
 
 		<a class="rps-buttons" onclick="roll(0)">Rock</a>
 		<a class="rps-buttons" onclick="roll(1)">Paper</a>
@@ -25,70 +25,70 @@
 		<p id="action"><br></p>
 
 	</body>
+
+	<script>
+		const emojis = ["&#x1F311;", "&#x1F4C4;", "&#x2702;"];
+		const objects = ["rock", "paper", "scissors"];
+		const weakness = [1, 2, 0];
+
+		var objectIndex = 0;
+
+		var wins = 0;
+		var losses = 0; 
+		var draws = 0;
+		var result = "";
+
+		var rolled = false;
+
+		const changeEmojiInterval = setInterval(changeEmoji, 500);
+
+		function changeEmoji(){
+			document.getElementById("object").innerHTML = emojis[objectIndex];
+
+			if(objectIndex >= 2){
+				objectIndex = 0;
+			}
+			else{
+				objectIndex += 1;
+			}
+		}
+
+		function roll(object){
+			var random = Math.floor(Math.random() * 3);
+			var colour;
+
+			clearInterval(changeEmojiInterval);
+
+			if(object == weakness[random]){
+				wins++;
+				document.getElementById("wins").innerHTML = "Wins: " + wins.toString();
+				result = "Win";
+			}
+			else if(random == weakness[object]){
+				losses++;
+				document.getElementById("losses").innerHTML = "Losses: " + losses.toString();
+				result = "Loss";
+			}
+			else{
+				draws++;
+				document.getElementById("draws").innerHTML = "Draws: " + draws.toString();
+				result = "Draw";
+			}
+
+			switch(result){
+				case "Win":
+					colour = "green";
+					break;
+				case "Draw":
+					colour = "black";
+					break;
+				case "Loss":
+					colour = "red";
+					break;
+			}
+
+			document.getElementById("object").innerHTML = `${emojis[object]} ${emojis[random]}`;
+			document.getElementById("action").innerHTML = `<div style="color: ${colour};">${result}!</div><br>You rolled ${emojis[object]}!<br>Computer rolled ${emojis[random]}!`;
+		}
+	</script>
 </html>
-
-<script>
-	const emojis = ["&#x1F311", "&#x1F4C4", "&#x2702"];
-	const objects = ["rock", "paper", "scissors"];
-	const weakness = [1, 2, 0];
-
-	var objectIndex = 0;
-
-	var wins = 0;
-	var losses = 0; 
-	var draws = 0;
-	var result = "";
-
-	var rolled = false;
-
-	const changeEmojiInterval = setInterval(changeEmoji, 500);
-
-	function changeEmoji(){
-		document.getElementById("object").innerHTML = emojis[objectIndex];
-
-		if(objectIndex >= 2){
-			objectIndex = 0;
-		}
-		else{
-			objectIndex += 1;
-		}
-	}
-
-	function roll(object){
-		var random = Math.floor(Math.random() * 3);
-		var colour;
-
-		clearInterval(changeEmojiInterval);
-
-		if(object == weakness[random]){
-			wins++;
-			document.getElementById("wins").innerHTML = "Wins: " + wins.toString();
-			result = "Win";
-		}
-		else if(random == weakness[object]){
-			losses++;
-			document.getElementById("losses").innerHTML = "Losses: " + losses.toString();
-			result = "Loss";
-		}
-		else{
-			draws++;
-			document.getElementById("draws").innerHTML = "Draws: " + draws.toString();
-			result = "Draw";
-		}
-
-		switch(result){
-			case "Win":
-				colour = "green";
-				break;
-			case "Draw":
-				colour = "black";
-				break;
-			case "Loss":
-				colour = "red";
-				break;
-		}
-
-		document.getElementById("object").innerHTML = `${emojis[object]} ${emojis[random]}`;
-		document.getElementById("action").innerHTML = `<div style="color: ${colour};">${result}!</div><br>You rolled ${emojis[object]}!<br>Computer rolled ${emojis[random]}!`;
-	}
-</script>
