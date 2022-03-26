@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Binary to Decimal</title>
+		<link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <h1>Binary to Decimal Converter</h1>
+        <img src="binary-code.jpg" alt="binary" style="margin: 15px; height: 400px;">
+        <p>Please enter a binary number with a maximum of 8 characters.</p>
+
+        <form>
+            <label for="binary"><b>Binary</b></label><br>
+            <input type="text" id="binary" name="binary" class="input-box" placeholder="00000000" maxlength="8"><br>
+        </form>
+
+        <button onclick="enterBinary()" class="nav-box">Submit</button>
+
+        <p id="result">Result: </p>
+        <p id="error" class="error"></p>
+    </body>
+
+    <script>
+        var input = document.getElementById("binary");
+        var error = document.getElementById("error");
+
+        function enterBinary(){
+            var valid = true;
+            var decimal = 0;
+            error.innerText = "";
+
+            for(var i = 0; i < input.value.length; i++){
+                if(input.value.toString()[i] != "0" && input.value.toString()[i] != "1"){
+                    error.innerText = "You must only enter 1s or 0s.";
+                    valid = false;
+                    break;
+                }
+            }
+
+            if(valid){
+                for(var i = input.value.length-1; i >= 0; i--){
+                    if(input.value.toString()[i] == "1"){
+                        decimal += Math.pow(2, input.value.length-i-1);
+                    }
+                }
+
+                document.getElementById("result").innerText = decimal;
+            }
+        }
+    </script>
+</html>
