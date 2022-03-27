@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .grid-container{
+                display: grid;
+                grid-template-columns: auto auto auto auto;
+                padding: 10px;
+                width: 200px;
+                margin: auto;
+                justify-content: center;
+            }
+            .grid-item{
+                padding: 20px;
+                text-align: center;
+                font-size: 20px;
+                font-weight: bold;
+                width: 100px;
+            }
+        </style>
+
+        <title>Calculator</title>
+		<link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="grid-container">
+            <input class="grid-item" style="grid-column: 1 / span 4; width: auto;">
+
+            <button class="grid-item">+</button>
+            <button class="grid-item">-</button>
+            <button class="grid-item">C</button>
+            <button class="grid-item">CE</button>
+
+            <button class="grid-item">7</button>
+            <button class="grid-item">8</button>
+            <button class="grid-item">9</button>
+            <button class="grid-item">/</button>
+
+            <button class="grid-item">4</button>
+            <button class="grid-item">5</button>
+            <button class="grid-item">6</button>
+            <button class="grid-item">x</button>
+
+            <button class="grid-item">1</button>
+            <button class="grid-item">2</button>
+            <button class="grid-item">3</button>
+
+            <button class="grid-item">/</button>
+            <button class="grid-item">0</button>
+            <button class="grid-item">.</button>
+            <button class="grid-item" style="grid-row-start: 7; grid-row-end: 5; grid-column: 4;">=</button>
+        </div>
+    </body>
+</html>
