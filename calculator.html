@@ -25,31 +25,91 @@
 
     <body>
         <div class="grid-container">
-            <input class="grid-item" style="grid-column: 1 / span 4; width: auto;">
+            <input id="input-box" class="grid-item" style="grid-column: 1 / span 4; width: auto;">
 
-            <button class="grid-item">+</button>
-            <button class="grid-item">-</button>
+            <button class="grid-item" onclick='appendNum("+")'>+</button>
+            <button class="grid-item" onclick='appendNum("-")'>-</button>
             <button class="grid-item">C</button>
             <button class="grid-item">CE</button>
 
-            <button class="grid-item">7</button>
-            <button class="grid-item">8</button>
-            <button class="grid-item">9</button>
-            <button class="grid-item">/</button>
+            <button class="grid-item" onclick="appendNum(7)">7</button>
+            <button class="grid-item" onclick="appendNum(8)">8</button>
+            <button class="grid-item" onclick="appendNum(9)">9</button>
+            <button class="grid-item" onclick='appendNum("/")'>/</button>
 
-            <button class="grid-item">4</button>
-            <button class="grid-item">5</button>
-            <button class="grid-item">6</button>
-            <button class="grid-item">x</button>
+            <button class="grid-item" onclick="appendNum(4)">4</button>
+            <button class="grid-item" onclick="appendNum(5)">5</button>
+            <button class="grid-item" onclick="appendNum(6)">6</button>
+            <button class="grid-item" onclick='appendNum("*")'>x</button>
 
-            <button class="grid-item">1</button>
-            <button class="grid-item">2</button>
-            <button class="grid-item">3</button>
+            <button class="grid-item" onclick="appendNum(1)">1</button>
+            <button class="grid-item" onclick="appendNum(2)">2</button>
+            <button class="grid-item" onclick="appendNum(3)">3</button>
 
-            <button class="grid-item">/</button>
-            <button class="grid-item">0</button>
+            <button class="grid-item"></button>
+            <button class="grid-item" onclick="appendNum(0)">0</button>
             <button class="grid-item">.</button>
-            <button class="grid-item" style="grid-row-start: 7; grid-row-end: 5; grid-column: 4;">=</button>
+            <button class="grid-item" style="grid-row-start: 7; grid-row-end: 5; grid-column: 4;" onclick="scanInput()">=</button>
+        
+            <p id="output"></p>
         </div>
     </body>
+
+    <script>
+        const nums = [""];
+        const operations = [""];
+        var inputBox = document.getElementById("input-box");
+        var output = document.getElementById("output");
+
+        inputBox.value = "";
+
+        function appendNum(num){
+            inputBox.value += num.toString();
+        }
+
+        function scanInput(){
+            var j = 0;
+            var out = 0;
+
+            operations[0] = "";
+            nums[0] = "";
+
+            for(var i = 0; i < inputBox.value.toString().length; i++){
+                switch(inputBox.value.toString()[i]){
+                    case "+":
+                    case "-":
+                    case "*":
+                    case "/":
+                        operations[j] = inputBox.value.toString()[i];
+                        j++;
+                        operations[j] = "";
+                        nums[j] = "";
+                        break;
+                    default:
+                        nums[j] += inputBox.value.toString()[i];
+                        break;
+                }
+            }
+
+            out = nums[0];
+
+            for(var x = 0; x < operations.length; x++){
+                output.innerText += nums[i].toString();
+
+                switch(operations[x]){
+                    case "+":
+                        out += Number(nums[x + 1]);
+                    case "-":
+                        out -= Number(nums[x + 1]);
+                    case "*":
+                        out *= Number(nums[x + 1]);
+                    case "/":
+                        out /= Number(nums[x + 1]);
+                }
+            }
+
+            //output.innerText = out;
+        }
+    </script>
+
 </html>
